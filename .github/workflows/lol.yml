@@ -9,10 +9,13 @@ jobs:
   formatting:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-java@v4.2.1
+        with:
+          java-version: 21
       - uses: actions/checkout@v4 # v2 minimum required
       - uses: axel-op/googlejavaformat-action@v3
         with:
           args: "--replace"
           skip-commit: true
       - name: Print diffs
-        run: git --dry-run diff --exit-code
+        run: git --no-pager diff --exit-code
